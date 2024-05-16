@@ -13,6 +13,8 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username  # Puedes cambiarlo a otro campo si prefieres
+    
+    pass
 
 class Carrito(models.Model):
     id_carrito = models.AutoField(primary_key=True)
