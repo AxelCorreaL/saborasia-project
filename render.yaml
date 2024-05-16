@@ -1,20 +1,19 @@
 databases:
-  - name: SaborAsia
+  - name: mysitedb
     plan: free
-    databaseName: SaborAsia
-    user: SaborAsia
+    databaseName: mysite
+    user: mysite
 
 services:
   - type: web
     plan: free
-    name: SaborAsia
+    name: mysite
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker"
-    envVars:
+    startCommand: "python -m gunicorn saborAsia.asgi:application -k uvicorn.workers.UvicornWorker"    envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: SaborAsiadb
+          name: mysitedb
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
