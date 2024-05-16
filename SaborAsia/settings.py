@@ -71,6 +71,8 @@ TEMPLATES = [
     },
 ]
 
+# Para ASGI
+ASGI_APPLICATION = 'SaborAsia.asgi.application'
 WSGI_APPLICATION = 'SaborAsia.wsgi.application'
 
 
