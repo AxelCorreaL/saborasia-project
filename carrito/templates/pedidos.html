@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pedidos{% endblock %}
+{% block content %}
+<section class="small-container car-page" >
+<table>
+    <thead>
+        <tr>
+            <th>#ID Pedido</th>
+            <th>Total Pedido</th>
+            <th>Status</th>
+            <th>Ver pedido</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pedido in pedidos %}
+    <tr>
+        <td>{{ pedido.id_pedido }}</td>
+        <td>{{ pedido.total}} </td>
+        <td>{{ pedido.estado }}</td>
+        <td> <a href="{% url 'detalle_pedido' pedido.id_pedido %}">Detalles</a> </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    
+</table>
+</sections>
+
+
+{% endblock %}

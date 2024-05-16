@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="small-container car-page" >
+    <h2>Pedido #{{pedido.id_pedido}}</h2>
+    <table>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        {% for item in detalles_pedido %}
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/productos/' %}{{ item.id_producto.rutaImg }}.jpg" width="25%">
+                    <div>
+                        <small>{{ item.id_producto.descripcion }}</small><br>
+                        <small>Precio: ${{ item.id_producto.precio }}</small>
+                    </div>
+                </div>
+            </td>
+            <td><small>{{ item.cantidad }} unidad(es)</small>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="total-price">  
+        <table>
+            <tr>
+                <td>Total</td>
+                <td>${{ pedido.total }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

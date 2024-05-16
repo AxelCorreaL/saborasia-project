@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+    <!----- Products --->
+    <section>
+        <!-- TODO: Ordenar productos
+        <div class="row row-2">
+            <h2 class="title">Nuestros Productos</h2>
+            <select>
+                <option>Ordena por Defecto</option>
+                <option>Ordena por Precio</option>
+                <option>Ordena por Popularidad</option>
+                <option>Ordena por Valoración</option>
+            </select>
+        </div>
+        -->
+        <div class="row">
+            <h2 class="Title">Nuestros Productos</h2>
+        </div>
+        <div class="row">
+        {% for producto in productos %}
+            <div class="card" >
+                <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" class="card-img">
+                <div class="card-body">
+                    <h4>{{ producto.descripcion }} - ${{ producto.precio }}</h4>
+                </div>
+                <div class="card-footer">
+                    <div class="btn"> 
+                            <a href="{% url 'product_details' producto.id_producto %}">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+            
+
+        </div>
+    </section>
+    {% endblock %}
+

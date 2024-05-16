@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mi cuenta{% endblock %}
+
+{% block content %}
+    <!----- ACCOUNT PAGE --->
+    <section class="small-container" >
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!--<div class="form-container-x">-->
+                        <form id="infoForm" method="post" action="{% url 'actualizar_info' %}">
+                            {% csrf_token %}
+                            <h2>¡Hola {{ user.username }},<br> actualiza tu información!</h2>
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ user.nombre }}" required>
+                            
+                            <label for="primer_apellido">Primer Apellido:</label>
+                            <input type="text" name="primer_apellido" id="primer_apellido" placeholder="Primer Apellido" value="{{ user.primer_apellido }}" required>
+                            
+                            <label for="segundo_apellido">Segundo Apellido (opcional):</label>
+                            <input type="text" name="segundo_apellido" id="segundo_apellido" placeholder="Segundo Apellido" value="{{ user.segundo_apellido }}">
+
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono" value="{{ user.telefono }}" required>
+                                                        
+                            <label for="codigo_postal">Código Postal:</label>
+                            <input type="number" name="codigo_postal" id="codigo_postal" placeholder="Código Postal" value="{{user.codigo_postal}}">
+
+                            <label for="direccion_envio">Dirección de Envío:</label>
+                            <input type="text" name="direccion_envio" id="direccion_envio" placeholder="Dirección de Envío" value="{{ user.direccion_envio }}" required>
+                            
+                            <button type="submit" class="btn">Actualizar</button>
+                        </form>
+                        
+                        
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}
+

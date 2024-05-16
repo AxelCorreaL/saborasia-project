@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pagar{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="col-2">
+        <h1>Pagar Carrito</h1>
+        <p>Total a Pagar: ${{ carrito.total }}</p><br>
+        <div class="payment-info">
+            <h2>Información de Pago</h2>
+            <form method="post" action="{% url 'procesar_pago' %}">
+                {% csrf_token %}
+                <label for="numero_tarjeta">Número de Tarjeta:</label>
+                <input type="text" id="numero_tarjeta" name="numero_tarjeta" placeholder="************1234" required><br>
+                
+                <label for="nombre_tarjeta">Nombre en la Tarjeta:</label>
+                <input type="text" id="nombre_tarjeta" name="nombre_tarjeta" placeholder="John Doe" required><br>
+                
+                <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+                <input type="text" id="fecha_vencimiento" name="fecha_vencimiento" placeholder="12/24" required><br>
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="***" required><br>
+                
+                <button class="btn no-btn" type="submit">Pagar</button>
+            </form>
+            
+            
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

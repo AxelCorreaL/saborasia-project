@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <!----- Products --->
+    <div class="row">
+        <h2 class="Title"> Productos Destacados </h2>
+    </div>
+    <div class="row">
+    {% for producto in productos|slice:":3" %}
+        <div class="card" >
+            <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" class="card-img">
+            <div class="card-body">
+                <h4>{{ producto.descripcion }} - ${{ producto.precio }}</h4>
+            </div>
+            <div class="card-footer">
+                <div class="btn"> 
+                        <a href="{% url 'product_details' producto.id_producto %}">Comprar</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+    <div class="row">
+
+        <!-- Sección de información sobre la empresa -->
+        <section class="single-product">
+            <div class="row">
+            <div class="col-2">
+                <h2>Sobre Nosotros</h2>
+                <p>SaborAsia es más que una tienda en línea de alimentos asiáticos; somos un puente entre culturas, un lugar donde la autenticidad se encuentra con la comodidad. Nuestra misión es llevar los sabores vibrantes y los ingredientes frescos del corazón de Asia directamente a tu puerta, facilitando la exploración de la rica diversidad culinaria del continente.</p>
+            </div>
+            <div class="col-2">
+                <h2>Visión</h2>
+                <p>Nuestra visión es ser reconocidos como el destino preferido para los entusiastas de la cocina asiática en busca de calidad, variedad y conveniencia. Nos esforzamos por ofrecer una experiencia de compra excepcional, donde cada producto cuente una historia, cada sabor despierte los sentidos y cada cliente se sienta inspirado a explorar y crear en la cocina.</p></p>
+            </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
+

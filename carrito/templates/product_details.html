@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <!----- PRODUCT DETAILS --->
+    <section class="single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" width="75%" id="product_img">
+                <!--
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" width="100%" class="small-img">
+                    </div><div class="small-img-col">
+                        <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" width="100%" class="small-img">
+                    </div>
+                </div>
+                -->
+            </div>
+            <div class="col-2">
+                <h1>{{producto.descripcion}}</h1>
+                <h4>$ {{producto.precio}}</h4>
+                <div>
+                    {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'agregar_al_carrito' producto.id_producto %}">
+                        {% csrf_token %}
+                        <p>Cantidad</p>
+                        <input type="number" name="cantidad" value="1">
+                        <button type="submit" class="btn">Agregar al Carrito</button>
+                    </form>
+                    {% else %}
+                    <small style="color: brown;">Debes iniciar sesión para agregar productos al carrito.</small>
+                    {% endif %}
+            </div>
+                <!-- Agrega esto para depurar -->
+                <br><br>
+                <h3>Detalles del Producto </h3>
+                <p>
+                    Conocido por su forma alargada y su textura crujiente, el Pocky es un popular aperitivo japonés que combina la dulzura del chocolate con la satisfacción crujiente de la galleta. Su sabor equilibrado y su formato conveniente lo hacen ideal para disfrutar en cualquier momento del día, ya sea como un capricho rápido o como un regalo para compartir con amigos y familiares.
+                </p>
+            </div>
+        </div>
+      
+
+<!-- Relates Products -->
+            <div class="small-container">
+                <h2>Productos Relacionados</h2>
+            </div>
+            <div class="row">
+            {% for producto in productos %}
+            <div class="card">
+                <img src="{%static 'images/productos/'%}{{producto.rutaImg}}.jpg" class="card-img">
+                <div class="card-body">
+                    <h4>{{producto.descripcion}}</h4>
+                    <p>$ {{producto.precio}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        
+              
+    </section>
+
+    {% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <!----- PRODUCT DETAILS --->
+    <section class="small-container car-page" >
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+            {% for item in detalle_carrito %}
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{% static 'images/productos/' %}{{ item.id_producto.rutaImg }}.jpg" width="25%">
+                        <div>
+                            <small>{{ item.id_producto.descripcion }}</small><br>
+                            <small>Precio: ${{ item.id_producto.precio }}</small>
+                            <a href="{% url 'eliminar_del_carrito' item.id_detalle %}">Eliminar</a>  <!-- Enlace para eliminar el elemento del carrito -->
+                            <!--<a href=" url 'eliminar_del_carrito' item.id ">Eliminar</a>-->
+                        </div>
+                    </div>
+                </td>
+                <td><small>{{ item.cantidad }} unidad(es)</small>
+                <td>$ {{ item.subtotal_producto }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="total-price">  
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>${{ subtotal|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td>Impuestos</td>
+                    <td>${{ impuestos|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>${{ total|floatformat:2 }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="btn"><a href="{% url 'pagar' %}">Pagar Carrito</a></div>
+              
+    </section>
+    {% endblock %}

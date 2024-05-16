@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registrate{% endblock %}
+
+{% block content %}
+
+    <section class="small-container" >
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span>Inicia Sesión</span>
+                        </div>
+                        <form id="signinForm" method="post" action="{% url 'signin'%}">
+                            {% csrf_token %}
+                            <input name="username" type="text" placeholder="username">
+                            <input name="password" type="password" placeholder="password">
+                            <button type="submit" class="btn">Inicia Sesion </button>
+                            <a href="">Olvidé mi contraseña</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}
